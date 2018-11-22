@@ -5,6 +5,14 @@ HELPER="clonos_database"
 
 . /etc/rc.conf
 
+if [ -z "${cbsd_workdir}" ]; then
+	echo "Error: CBSD workdir is not initialized"
+	echo "Please init CBSD first, e.g:"
+	echo "  env workdir=/usr/jails /usr/local/cbsd/sudoexec/initenv"
+	echo
+	exit 1
+fi
+
 workdir="${cbsd_workdir}"
 
 set -e
