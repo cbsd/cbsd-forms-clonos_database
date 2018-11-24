@@ -27,7 +27,7 @@ SALT_FILE="/var/db/clonos/salt"
 if [ ! -r ${SALT_FILE} ]; then
 	SALT=$( /usr/bin/head -c 30 /dev/random | /usr/bin/uuencode -m - | /usr/bin/tail -n 2 | /usr/bin/head -n1 )
 	echo ${SALT} > ${SALT_FILE}
-	chmod 0440
+	chmod 0440 ${SALT_FILE}
 	chown www:cbsd ${SALT_FILE}
 fi
 
