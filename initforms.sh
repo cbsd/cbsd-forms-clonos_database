@@ -28,7 +28,7 @@ if [ ! -r ${SALT_FILE} ]; then
 	SALT=$( /usr/bin/head -c 30 /dev/random | /usr/bin/uuencode -m - | /usr/bin/tail -n 2 | /usr/bin/head -n1 )
 	echo ${SALT} > ${SALT_FILE}
 	chmod 0440
-	chown web:cbsd ${SALT_FILE}
+	chown www:cbsd ${SALT_FILE}
 fi
 
 # sys_helpers_list, jails_helper_wl
