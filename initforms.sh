@@ -16,7 +16,7 @@ fi
 workdir="${cbsd_workdir}"
 
 set -e
-. ${workdir}/cbsd.conf
+. /usr/local/cbsd/cbsd.conf
 . ${subr}
 set +e
 
