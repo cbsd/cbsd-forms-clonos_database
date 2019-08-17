@@ -3,9 +3,23 @@ MYDIR="$( /usr/bin/dirname $0 )"
 MYPATH="$( /bin/realpath ${MYDIR} )"
 HELPER="clonos_database"
 
-. /etc/rc.conf
+: ${distdir="/usr/local/cbsd"}
+# MAIN
+if [ -z "${workdir}" ]; then
+	[ -z "${cbsd_workdir}" ] && . /etc/rc.conf
+	[ -z "${cbsd_workdir}" ] && exit 0
+	workdir="${cbsd_workdir}"
+fi
 
-if [ -z "${cbsd_workdir}" ]; then
+[ ! -f "${distdir}/cbsd.conf" ] && exit 0
+
+set -e
+. ${distdir}/cbsd.conf
+. ${distdir}/tools.subr
+. ${subr}
+set +e
+
+if [ -z "${workdir}" ]; then
 	echo "Error: CBSD workdir is not initialized"
 	echo "Please init CBSD first, e.g:"
 	echo "  env workdir=/usr/jails /usr/local/cbsd/sudoexec/initenv"
@@ -13,14 +27,7 @@ if [ -z "${cbsd_workdir}" ]; then
 	exit 1
 fi
 
-workdir="${cbsd_workdir}"
-
-set -e
-. /usr/local/cbsd/cbsd.conf
-. ${subr}
-set +e
-
-MYPATH="${moduledir}/forms.d/${HELPER}"
+MYPATH="${distmoduledir}/forms.d/${HELPER}"
 DBFILE="/var/db/clonos/clonos.sqlite"
 SALT_FILE="/var/db/clonos/salt"
 
