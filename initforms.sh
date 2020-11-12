@@ -48,7 +48,7 @@ fi
 BEGIN TRANSACTION;
 DELETE FROM sys_helpers_list;
 INSERT INTO sys_helpers_list ( module ) VALUES ( "elasticsearch" );
-INSERT INTO syls_helpers_list ( module ) VALUES ( "memcached" );
+INSERT INTO sys_helpers_list ( module ) VALUES ( "memcached" );
 INSERT INTO sys_helpers_list ( module ) VALUES ( "php" );
 INSERT INTO sys_helpers_list ( module ) VALUES ( "postgresql" );
 INSERT INTO sys_helpers_list ( module ) VALUES ( "prometheus" );
